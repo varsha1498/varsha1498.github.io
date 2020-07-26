@@ -5,7 +5,8 @@ function NoteList(props) {
     const list = props.list;
     const arr = list.map((note)=>{
         return(
-            <div className = "Note-container" key = {note.id}>
+            <div className = "Inner-container" key = {note.id}>
+                 <div className = "Note-container" >
                <div id = "textPart">
 
                 <div>{note.title}</div>
@@ -18,6 +19,8 @@ function NoteList(props) {
                 </div>
                
             </div>
+            </div>
+           
         )
     });
     // console.log(arr);

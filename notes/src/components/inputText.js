@@ -9,7 +9,7 @@ class inputText extends React.Component {
         super(props)
     
         this.state = {
-            id: uuid(),
+            id: "",
              title: "",
              text: "",
              
@@ -28,20 +28,46 @@ class inputText extends React.Component {
         });
     }
 
-    addNote(e){
+    addNote(e, obj){
          e.preventDefault();
-         const {newNote} = this.props;
+         const {newNote,updatedNotes} = this.props;
          const note = {
              ...this.state
          };
          
-        this.setState({
-            id: uuid(),
-            title: "",
-            text: "",
-            
+        
+        const index = this.props.notes.findIndex(note =>note.id===obj.id)
+       
+        if(index===-1){
+            const n = {...note, id:uuid()};
+            //console.log(n);
+            newNote(n);  
+            this.setState({
+                id: "",
+                title: "",
+                text:""
+            });
+            return;
+        }
+        
+        const noteArray = this.props.notes.map((note) =>{
+            if(note.id===obj.id){
+                const newObj = {id: note.id, title: this.state.title, text: this.state.text };  
+                return newObj;
+            }
+            return note;
         });
-        newNote(note);   
+
+        updatedNotes(noteArray);
+        this.setState({
+            id: "",
+            title: "",
+            text:""
+        });
+        return;
+
+       
+        // console.log(this.props.notes);
     }
 
     delete(id){
@@ -59,29 +85,30 @@ class inputText extends React.Component {
        const [num1] = editedNote;
        console.log(num1);
         this.setState({
+            id:   num1.id,
             title: num1.title,
             text: num1.text
         });
 
-        this.delete(id);
      }
 
 
 
     render(){
-    const {title,text} = this.state;
+   // const {title,text} = this.state;
     //console.log(this.props.notes);
     // console.log(this.props);
     return (
         <>
         <div className = "Input">
-            
-            <input name = "title" type ="text" placeholder = "Title" onChange = {this.handleChange} value = {this.state.title}></input>
-            <br/>
-            <textarea name = "text" type ="text" placeholder = "Description" onChange = {this.handleChange} value = {this.state.text}></textarea>
-            <br />
-            {/* <button onClick = {() => this.props.newNote(this.state)} >Create</button> */}
-            <button onClick = {this.addNote} >Create</button>
+            <form onSubmit = {(e)=> this.addNote( e, this.state)}>
+                <input  name = "title" type ="text" placeholder = "Title" onChange = {this.handleChange} value = {this.state.title} required></input>
+                <br/>
+                <textarea  name = "text" type ="text" placeholder = "Description" onChange = {this.handleChange} value = {this.state.text} required></textarea>
+                <br />
+                {/* <button onClick = {() => this.props.newNote(this.state)} >Create</button> */}
+                <button >Create</button>
+            </form>
 
         </div>
         <div className = "Note-List">

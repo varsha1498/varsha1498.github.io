@@ -18,15 +18,25 @@ export class App extends Component {
    this.newNote = this.newNote.bind(this);
   //  this.update = this.update.bind(this);
    this.deleted = this.deleted.bind(this);
+   this.updatedNotes = this.updatedNotes.bind(this);
  }
- 
+
  newNote(obj){
+ 
   this.setState(prevState => {
     return (
       {
         notes: [obj, ...prevState.notes]
       }
     )
+  });
+  
+ }
+
+ updatedNotes(obj){
+
+  this.setState({
+    notes: obj
   });
  }
 
@@ -40,12 +50,12 @@ export class App extends Component {
 
  
   render() {
-    // console.log(this.state)
+    console.log(this.state.notes);
     return (
       <>
        <Navbar />
         <div className = "main-container">
-          <InputText newNote = {this.newNote} notes = {this.state.notes} deleted ={this.deleted}/>
+          <InputText newNote = {this.newNote} notes = {this.state.notes} deleted ={this.deleted} updatedNotes = {this.updatedNotes}/>
         </div>
      </>
     

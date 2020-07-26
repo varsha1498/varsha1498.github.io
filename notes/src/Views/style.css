@@ -45,7 +45,18 @@ textarea{
     overflow: none;
     background:grey;
     width: 150px;
-    height: 150px;
+    min-height: 150px;
+    /* margin-bottom: 10px; */
+    /* margin: 20px; */
+      
+}
+.Inner-container{
+
+    break-inside: avoid-column; /*Prevent element from breaking */
+    overflow: none;
+    
+    width: 150px;
+    min-height: 150px;
     /* margin-bottom: 10px; */
     margin: 20px;
       
@@ -67,10 +78,15 @@ button{
 }
 
 #textPart{
+    min-height: 130px;
     height: 80%;
-    overflow: scroll;
+    width: 100%;
+    max-width: 150px;
+    word-break: break-all;
+
 }
 
 #buttons{
     height: 20%;
+
 }
