@@ -17,7 +17,7 @@ export class App extends Component {
    }
    this.newNote = this.newNote.bind(this);
   //  this.update = this.update.bind(this);
-  //  this.delete = this.delete.bind(this);
+   this.deleted = this.deleted.bind(this);
  }
  
  newNote(obj){
@@ -30,6 +30,14 @@ export class App extends Component {
   });
  }
 
+
+ deleted(id){
+  const deletedNote = this.state.notes.filter(note=> note.id!==id);
+  this.setState({
+    notes: deletedNote
+  });
+ }
+
  
   render() {
     // console.log(this.state)
@@ -37,7 +45,7 @@ export class App extends Component {
       <>
        <Navbar />
         <div className = "main-container">
-          <InputText newNote = {this.newNote} notes = {this.state.notes}/>
+          <InputText newNote = {this.newNote} notes = {this.state.notes} deleted ={this.deleted}/>
         </div>
      </>
     

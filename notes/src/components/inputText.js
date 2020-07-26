@@ -17,7 +17,7 @@ class inputText extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.addNote = this.addNote.bind(this);
         this.update = this.update.bind(this);
-        // this.delete = this.delete.bind(this);
+         this.delete = this.delete.bind(this);
     }
 
     handleChange(e){
@@ -44,11 +44,12 @@ class inputText extends React.Component {
         newNote(note);   
     }
 
-    // delete(id){
-    //     const deletedNote = props.notes.filter(note=> note.id!==id);
-    //     this.setState({
-    //       notes: deletedNote
-    //     });
+    delete(id){
+        const {deleted} = this.props;
+        console.log(id);
+        deleted(id);
+    }
+
     update(id){
 
         // console.log(typeof(id));
@@ -62,6 +63,7 @@ class inputText extends React.Component {
             text: num1.text
         });
 
+        this.delete(id);
      }
 
 
