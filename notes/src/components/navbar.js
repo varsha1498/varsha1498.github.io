@@ -5,7 +5,7 @@ export default function navbar() {
     return (
         <div className = "nav">
             <nav>
-                Keeper
+                #NOTED
             </nav>
 
 

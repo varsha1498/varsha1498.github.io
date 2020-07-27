@@ -9,7 +9,8 @@ function NoteList(props) {
                  <div className = "Note-container" >
                <div id = "textPart">
 
-                <div>{note.title}</div>
+                <div><b>{note.title}</b></div>
+                <hr></hr>
                 <p>{note.text}</p>
                 
                 </div>  
